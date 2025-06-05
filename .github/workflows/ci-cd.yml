@@ -39,9 +39,9 @@ jobs:
             echo "ROLE ==$ROLE_ARN  "
             aws lambda create-function \
               --function-name "$FUNCTION_NAME" \
-              --runtime python3.12 \                    # Change runtime as needed
+              --runtime python3.12 \
               --role "$ROLE_ARN" \
-              --handler lambda_function.lambda_handler \ # Change handler if different
+              --handler lambda_function.lambda_handler \
               --zip-file fileb://function.zip
           fi
 
