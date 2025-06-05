@@ -1,0 +1,12 @@
+##cloning
+## could not checkin as it has secrets in commit history, so i created new directory and 
+mkdir clean-repo
+cd clean-repo
+
+git clone https://github.com/susabhavani987/susabhavani987.git
+cd susabhavani987
+git-filter-repo --commit-callback '
+if commit.original_id == b"6339610f3b349dc3300e853f9e60029770826229":
+    commit.skip()
+'
+git push origin --force
