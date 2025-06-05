@@ -26,7 +26,7 @@ jobs:
       - name: Create or Update Lambda
         run: |
           FUNCTION_NAME="etl-lambda"
-          ROLE_ARN="arn:aws:iam::717174411815:role/service-role/MyFirstLambdaFunction-role-5kqtw592" 
+          ROLE_ARN="arn:aws:iam::717174411815:role/vijaylambda" 
           
           # Check if function exists
           if aws lambda get-function --function-name "$FUNCTION_NAME" > /dev/null 2>&1; then
