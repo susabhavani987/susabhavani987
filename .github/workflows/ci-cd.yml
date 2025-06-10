@@ -27,6 +27,7 @@ jobs:
                pip install pandas -t package/
                cp lambda_function.py package/
                cp main.py package/
+               cp -fr ../etl package/
                cd package
                zip -r ../function.zip .
 
