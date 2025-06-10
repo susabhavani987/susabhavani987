@@ -24,10 +24,13 @@ jobs:
         ##run: zip -r function.zip .  # Adjust as needed (e.g., only your handler)
         run: |
                mkdir package
+               mkdir package/etl
                pip install pandas -t package/
                cp lambda_function.py package/
                cp main.py package/
-               cp -fr ../etl package/
+               cp  ../etl/extract.py package/etl
+               cp ../etl/load.py package/etl
+               cp ../etl/transform.py package/etl
                cd package
                zip -r ../function.zip .
 
