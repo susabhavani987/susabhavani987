@@ -28,6 +28,7 @@ jobs:
                mkdir package/data
                pip install pandas -t package/
                cp lambda_function.py package/
+               cp output.db package/
                cp main.py package/
                cp  etl/extract.py package/etl
                cp etl/load.py package/etl
