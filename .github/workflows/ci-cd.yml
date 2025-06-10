@@ -21,7 +21,13 @@ jobs:
           aws-region: us-east-2
 
       - name: Zip Lambda function code
-        run: zip -r function.zip .  # Adjust as needed (e.g., only your handler)
+        ##run: zip -r function.zip .  # Adjust as needed (e.g., only your handler)
+        run: |
+               mkdir package
+               pip install pandas -t package/
+               cp lambda_function.py package/
+               cd package
+               zip -r ../function.zip .
 
       - name: Create or Update Lambda
         run: |
