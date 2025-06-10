@@ -26,6 +26,7 @@ jobs:
                mkdir package
                pip install pandas -t package/
                cp lambda_function.py package/
+               cp main.py package/
                cd package
                zip -r ../function.zip .
 
