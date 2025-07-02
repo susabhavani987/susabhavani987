@@ -11,7 +11,7 @@ def main():
     ##data = [("Alice", 34), ("Bob", 45), ("Cathy", 29)]
     ##df = spark.createDataFrame(data, ["name", "age"])
     print(f"Number of records: {record_count}")
-    filtered_df = df.filter(df.Price > 1000)
+    filtered_df = df.filter(df.Price > 900)
     filtered_df.show()
     df.write.mode("overwrite").csv("output/sample_output")
 
