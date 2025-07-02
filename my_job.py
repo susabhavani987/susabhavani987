@@ -6,10 +6,12 @@ def main():
         .getOrCreate()
 
     # Example: Create DataFrame and write to CSV
-    data = [("Alice", 34), ("Bob", 45), ("Cathy", 29)]
-    df = spark.createDataFrame(data, ["name", "age"])
-
-    df.show()
+    df = spark.read.csv("data/orders.csv", header=True, inferSchema=True)
+    record_count = df.count()
+    ##data = [("Alice", 34), ("Bob", 45), ("Cathy", 29)]
+    ##df = spark.createDataFrame(data, ["name", "age"])
+    print(f"Number of records: {record_count}")
+    ##df.show()
     df.write.mode("overwrite").csv("output/sample_output")
 
     spark.stop()
