@@ -21,10 +21,12 @@ def main():
        filtered_df.show()
 
     def process_data2():
+       local_df = df
        filtered_df = local_df.filter((local_df.Price < 900) & (local_df.Availability == "discontinued"))
        filtered_df.show()
 
     def process_data3():
+       local_df = df
        filtered_df = local_df.filter((local_df.Price == 900) & (local_df.Availability == "discontinued"))
        filtered_df.show()
 
