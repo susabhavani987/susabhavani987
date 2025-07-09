@@ -4,7 +4,7 @@ import threading
 def main():
     spark = SparkSession.builder \
     .appName("Multithreaded PySpark Example") \
-    .master("local[3]") \  # Using 4 local threads
+    .master("local[3]") \
     .getOrCreate()
 
     # Example: Create DataFrame and write to CSV
