@@ -14,6 +14,7 @@ def main():
     spark = SparkSession.builder \
         .appName("MyMongoSparkApp") \
         .master("local[2]") \
+        .config("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.12:10.1.1") \
         .config("spark.mongodb.read.connection.uri", uri) \
         .getOrCreate()
 
