@@ -25,4 +25,4 @@ jobs:
 
       - name: Run PySpark job
         run: |
-          python my_job_thread.py
+          my_job_thread_mongodb.py
