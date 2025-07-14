@@ -10,7 +10,7 @@ def main():
     # MongoDB URI with f-string interpolation
     uri = f"mongodb+srv://Vijaychava101:{mongo_password}@school.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=school"
     print("Connecting to:", uri)
-    ##uri = "mongodb+srv://vijaychava101:QAMyb1exS4BNHooQ@school.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=school"
+    uri = "mongodb+srv://vijaychava101:QAMyb1exS4BNHooQ@school.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=school"
 
     # Create Spark session with MongoDB connector
     spark = SparkSession.builder \
