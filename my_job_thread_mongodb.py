@@ -6,7 +6,7 @@ from pymongo import MongoClient
 def main():
     # Get password from environment variable
     mongo_password = os.getenv("MONGO_PASSWORD")
-    
+    print(f"hello pss {mongo_password")
     # MongoDB URI with f-string interpolation
     uri = f"mongodb+srv://Vijaychava101:{mongo_password}@Trust.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=Trust"
 
