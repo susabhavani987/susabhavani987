@@ -8,7 +8,7 @@ def main():
     mongo_password = os.getenv("MONGO_PASSWORD")
     print(f"hello pss {mongo_password}")
     # MongoDB URI with f-string interpolation
-    uri = f"mongodb+srv://Vijaychava101:{mongo_password}@Trust.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=Trust"
+    uri = f"mongodb+srv://Vijaychava101:{mongo_password}@school.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=school"
     print("Connecting to:", uri)
 
     # Create Spark session with MongoDB connector
