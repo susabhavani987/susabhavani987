@@ -6,10 +6,8 @@ def main():
 
    spark = SparkSession.builder \
       .appName("MongoDBJoinExample") \
-       .config("spark.mongodb.read.connection.uri", "uri="mongodb+srv://vijaychava101:QAMyb1exS4BNHooQ@Trust.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=Trust") \
- ##              .config("spark.mongodb.read.connection.uri", "uri="mongodb+srv://vijaychava101:QAMyb1exS4BNHooQ@Trust.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=Trust") \
- ##     .config("spark.mongodb.write.connection.uri","uri="mongodb+srv://vijaychava101:QAMyb1exS4BNHooQ@Trust.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=Trust.output") \
-       .getOrCreate()
+      .config("spark.mongodb.read.connection.uri","uri="mongodb+srv://vijaychava101:QAMyb1exS4BNHooQ@Trust.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=Trust") \
+      .getOrCreate()
 
 # Read "students" collection
     students_df = spark.read.format("mongodb").option("database", "Trust").option("collection", "students").load()
