@@ -3,12 +3,14 @@ import threading
 from pymongo import MongoClient
 def main():
 
-   mongo_password = os.getenv("MONGO_PASSWORD")
-   spark = SparkSession.builder \
-      .appName("MongoDBJoinExample") \
-      ##.config("spark.mongodb.read.connection.uri","uri="mongodb+srv://vijaychava101:QAMyb1exS4BNHooQ@Trust.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=Trust") \
-      .config("spark.mongodb.read.connection.uri", "mongodb+srv://Vijaychava101:{mongo_password}@Trust.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=Trust") \
-      .getOrCreate()
+mongo_password = os.getenv("MONGO_PASSWORD")
+
+uri = f"mongodb+srv://Vijaychava101:{mongo_password}@Trust.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=Trust"
+
+spark = SparkSession.builder \
+    .appName("MyMongoSparkApp") \
+    .config("spark.mongodb.read.connection.uri", uri) \
+    .getOrCreate()
 
 # Read "students" collection
     students_df = spark.read.format("mongodb").option("database", "Trust").option("collection", "students").load()
