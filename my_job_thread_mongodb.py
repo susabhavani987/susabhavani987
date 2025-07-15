@@ -19,12 +19,12 @@ def main():
 
     # Create Spark session with MongoDB connector
     spark = SparkSession.builder \
-    .appName("MyMongoSparkApp") \
-    .master("local[*]") \
-    .config("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.12:10.1.1") \
-    .config("spark.mongodb.read.connection.uri", uri) \
-    .config("spark.jars.repositories", "https://repos.spark-packages.org") \
-    .getOrCreate()
+       .appName("MyMongoSparkApp") \
+       .master("local[*]") \
+       .config("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.12:10.1.1") \
+       .config("spark.mongodb.read.connection.uri", uri) \
+       .config("spark.jars.repositories", "https://repos.spark-packages.org") \
+       .getOrCreate()
 
     students_df = spark.read.format("mongodb") \
         .option("spark.mongodb.read.database", "Trust") \
