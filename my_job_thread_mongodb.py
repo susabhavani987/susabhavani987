@@ -21,11 +21,11 @@ def main():
     spark = SparkSession.builder \
        .appName("MyMongoSparkApp") \
        .master("local[*]") \
-       .config("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.12:3.0.1") \
+       ##.config("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.12:3.0.1") \
        .config("spark.mongodb.read.connection.uri", uri) \
        .getOrCreate()
     print("Spark session started.")
-    students_df = spark.read.format("mongo") \
+    students_df = spark.read.format("mongodb") \
         .option("spark.mongodb.read.database", "Trust") \
         .option("spark.mongodb.read.collection", "students") \
         .load()
