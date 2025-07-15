@@ -37,3 +37,7 @@ def main():
     for row in df.collect():
        print(row)
     students_df.show()
+    
+    
+   if __name__ == "__main__":
+    main()
