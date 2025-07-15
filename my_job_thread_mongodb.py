@@ -8,12 +8,11 @@ def main():
     mongo_password = os.getenv("MONGO_TOK")
     print(f"hello pss {mongo_password}")
     # MongoDB URI with f-string interpolation
-    ##uri = f"mongodb+srv://Vijaychava101:{mongo_password}@school.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=school"
-    uri = f"mongodb+srv://vijaychava101:45660Living@school.6nof4yc.mongodb.net/?retryWrites=true&w=majority"
+    uri = f"mongodb+srv://Vijaychava101:{mongo_password}@school.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=school"
+    ##uri = f"mongodb+srv://vijaychava101:45660Living@school.6nof4yc.mongodb.net/?retryWrites=true&w=majority"
    
 
     print("Connecting to:", uri)
-    ##uri = "mongodb+srv://vijaychava101:QAMyb1exS4BNHooQ@school.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=school"
 
     # Create Spark session with MongoDB connector
     spark = SparkSession.builder \
@@ -22,7 +21,7 @@ def main():
         .config("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.12:10.1.1") \
         .config("spark.mongodb.read.connection.uri", uri) \
         .getOrCreate()
-
+    print("Connecting after spark", uri)
     # Set up MongoDB client (for direct PyMongo access if needed)
     client = MongoClient(uri)
     db = client['Trust']
@@ -32,6 +31,7 @@ def main():
     # Multithreaded processing functions
     def process_data1():
         students_df = spark.read.format("mongodb") \
+            .option("spark.mongodb.read.connection.uri", uri) \
             .option("database", "Trust") \
             .option("collection", "students") \
             .load()
@@ -40,6 +40,7 @@ def main():
 
     def process_data2():
         departments_df = spark.read.format("mongodb") \
+            .option("spark.mongodb.read.connection.uri", uri) \
             .option("database", "Trust") \
             .option("collection", "departments") \
             .load()
