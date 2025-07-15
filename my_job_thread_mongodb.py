@@ -42,7 +42,7 @@ def main():
         departments_df = spark.read.format("mongodb") \
             .option("spark.mongodb.read.connection.uri", uri) \
             .option("database", "Trust") \
-            .option("collection", "departments") \
+            .option("collection", "dept") \
             .load()
         filtered_df = departments_df.filter(departments_df.Dept == 4)
         filtered_df.show()
