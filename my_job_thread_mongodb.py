@@ -25,10 +25,15 @@ def main():
        .config("spark.mongodb.read.connection.uri", uri) \
        .config("spark.jars.repositories", "https://repos.spark-packages.org") \
        .getOrCreate()
-
+    print("Spark session started.")
     students_df = spark.read.format("mongodb") \
         .option("spark.mongodb.read.database", "Trust") \
         .option("spark.mongodb.read.collection", "students") \
         .load()
-
+    print("Loaded DataFrame")
+    print("Record count:", df.count())
+    df.printSchema()
+    
+    for row in df.collect():
+       print(row)
     students_df.show()
