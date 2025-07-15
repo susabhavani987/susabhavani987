@@ -13,7 +13,7 @@ def main():
     uri = f"mongodb+srv://vijaychava101:{test}@school.6nof4yc.mongodb.net/Trust?retryWrites=true&w=majority&authSource=admin"
 
     ##uri = f"mongodb+srv://vijaychava101:45660Living@school.6nof4yc.mongodb.net/?retryWrites=true&w=majority"
-   
+    ##.config("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.12:3.0.1") \
 
     print("Connecting to:", uri)
 
@@ -21,7 +21,6 @@ def main():
     spark = SparkSession.builder \
        .appName("MyMongoSparkApp") \
        .master("local[*]") \
-       ##.config("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.12:3.0.1") \
        .config("spark.mongodb.read.connection.uri", uri) \
        .getOrCreate()
     print("Spark session started.")
