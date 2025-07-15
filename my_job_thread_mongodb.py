@@ -31,4 +31,4 @@ def main():
         .option("spark.mongodb.read.collection", "students") \
         .load()
 
-   students_df.show()
+    students_df.show()
