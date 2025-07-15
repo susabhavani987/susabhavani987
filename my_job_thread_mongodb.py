@@ -33,7 +33,7 @@ def main():
     print("Record count:", students_df.count())
     students_df.printSchema()
     
-    for row in df.collect():
+    for row in students_df.collect():
        print(row)
     students_df.show()
     
