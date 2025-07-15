@@ -9,7 +9,7 @@ def main():
     print(f"hello pss {mongo_password}")
     # MongoDB URI with f-string interpolation
     ##uri = f"mongodb+srv://Vijaychava101:{mongo_password}@school.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=school"
-    uri = mongodb+srv://vijaychava101:45660Living@school.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=school
+    uri = f"mongodb+srv://vijaychava101:45660Living@school.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=school"
     print("Connecting to:", uri)
     ##uri = "mongodb+srv://vijaychava101:QAMyb1exS4BNHooQ@school.6nof4yc.mongodb.net/?retryWrites=true&w=majority&appName=school"
 
