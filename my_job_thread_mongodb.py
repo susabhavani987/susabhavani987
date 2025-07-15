@@ -31,8 +31,8 @@ def main():
         .option("spark.mongodb.read.collection", "students") \
         .load()
     print("Loaded DataFrame")
-    print("Record count:", df.count())
-    df.printSchema()
+    print("Record count:", students_df.count())
+    students_df.printSchema()
     
     for row in df.collect():
        print(row)
