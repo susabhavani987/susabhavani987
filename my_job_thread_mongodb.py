@@ -23,12 +23,10 @@ def main():
        .master("local[*]") \
        .config("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.12:10.1.1") \
        .config("spark.mongodb.read.connection.uri", uri) \
-       .config("spark.jars.repositories", "https://repos.spark-packages.org") \
        .getOrCreate()
     print("Spark session started.")
     students_df = spark.read.format("mongodb") \
         .option("spark.mongodb.read.database", "Trust") \
-        .config("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.12:10.1.1") \
         .option("spark.mongodb.read.collection", "students") \
         .load()
     print("Loaded DataFrame")
