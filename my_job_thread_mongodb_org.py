@@ -64,7 +64,7 @@ def main():
     departments_df = results["departments"]
 
     # Join on a common key, e.g., Dept
-    joined_df = students_df.join(departments_df, on="Dept", how="outer")
+    joined_df = students_df.join(departments_df, on="Dept", how="inner")
 
     # Show result
     print("Connecting after Join in the joined", uri)
