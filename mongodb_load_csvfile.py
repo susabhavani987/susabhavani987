@@ -14,8 +14,7 @@ def main():
 
     ##uri = f"mongodb+srv://vijaychava101:45660Living@school.6nof4yc.mongodb.net/?retryWrites=true&w=majority"
     
-    record_count = df_csv.count()
-    print(f"Number of records: {record_count}")
+    
 
     print("Connecting to:", uri)
 
@@ -27,8 +26,9 @@ def main():
         .getOrCreate()
     
     df_csv = spark.read.csv("data/orders.csv", header=True, inferSchema=True)
-    
-    print("Connecting after spark", uri)
+    record_count = df_csv.count()
+    print(f"Number of records: {record_count}")
+   
     
     df_csv.write \
     .format("mongodb") \
