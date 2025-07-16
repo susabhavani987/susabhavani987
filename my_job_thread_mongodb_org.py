@@ -39,7 +39,7 @@ def main():
             .option("collection", "students") \
             .load()
         ##filtered_df = students_df.filter(students_df.Dept == 4)
-        students_df.show()
+        ##students_df.show()
         results["students"] = students_df
 
     def process_data2():
@@ -49,7 +49,7 @@ def main():
             .option("collection", "dept") \
             .load()
         ##filtered_df = departments_df.filter(departments_df.Dept == 4)
-        departments_df.show()
+        ##departments_df.show()
         results["departments"] = departments_df
     # Run both processing functions in separate threads
     threads = [threading.Thread(target=fn) for fn in [process_data1, process_data2]]
