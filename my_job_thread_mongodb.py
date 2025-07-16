@@ -29,7 +29,7 @@ def main():
         .option("spark.mongodb.read.collection", "students") \
         .load()
     print("Loaded DataFrame")
-    print("Record count:", students_df.count())
+   
     students_df.printSchema()
     
     #for row in students_df.collect():
@@ -42,6 +42,7 @@ def main():
           .option("collection", "students") \
           .load()
        filtered_df = students_df.filter(students_df.Dept == 4)
+       print("process_data1:", filtered_df.count())
        filtered_df.show()
 
     def process_data2():
@@ -51,6 +52,7 @@ def main():
           .option("collection", "dept") \
           .load()
        filtered_df = departments_df.filter(departments_df.Dept == 4)
+       print("process_data2:", filtered_df.count())
        filtered_df.show()  
     # Run both processing functions in separate threads
     threads = [threading.Thread(target=fn) for fn in [process_data1, process_data2]]
