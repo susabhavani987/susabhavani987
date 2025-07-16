@@ -38,8 +38,9 @@ def main():
             .option("database", "Trust") \
             .option("collection", "students") \
             .load()
-        filtered_df = students_df.filter(students_df.Dept == 4)
-        filtered_df.show()
+        ##filtered_df = students_df.filter(students_df.Dept == 4)
+        students_df.show()
+        results["students"] = students_df
 
     def process_data2():
         departments_df = spark.read.format("mongodb") \
@@ -47,18 +48,25 @@ def main():
             .option("database", "Trust") \
             .option("collection", "dept") \
             .load()
-        filtered_df = departments_df.filter(departments_df.Dept == 4)
-        filtered_df.show()
-
+        ##filtered_df = departments_df.filter(departments_df.Dept == 4)
+        departments_df.show()
+        results["departments"] = departments_df
     # Run both processing functions in separate threads
     threads = [threading.Thread(target=fn) for fn in [process_data1, process_data2]]
     for t in threads:
         t.start()
     for t in threads:
         t.join()
-
+    @spark.stop()
     # Stop the Spark session
-    spark.stop()
+    
+    students_df = results["students"]
+    departments_df = results["departments"]
 
+    # Join on a common key, e.g., Dept
+    joined_df = students_df.join(departments_df, on="Dept", how="inner")
+
+    # Show result
+    joined_df.show()
 if __name__ == "__main__":
     main()
