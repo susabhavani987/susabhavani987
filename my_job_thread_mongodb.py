@@ -37,19 +37,19 @@ def main():
     students_df.show()
     def process_data1():
        students_df = spark.read.format("mongodb") \
-            .option("spark.mongodb.read.connection.uri", uri) \
-            .option("database", "Trust") \
-            .option("collection", "students") \
-            .load()
-        filtered_df = students_df.filter(students_df.Dept == 4)
-        filtered_df.show()
+          .option("spark.mongodb.read.connection.uri", uri) \
+          .option("database", "Trust") \
+          .option("collection", "students") \
+          .load()
+       filtered_df = students_df.filter(students_df.Dept == 4)
+       filtered_df.show()
 
     def process_data2():
        departments_df = spark.read.format("mongodb") \
-            .option("spark.mongodb.read.connection.uri", uri) \
-            .option("database", "Trust") \
-            .option("collection", "dept") \
-            .load()
+          .option("spark.mongodb.read.connection.uri", uri) \
+          .option("database", "Trust") \
+          .option("collection", "dept") \
+          .load()
         filtered_df = departments_df.filter(departments_df.Dept == 4)
         filtered_df.show()  
     # Run both processing functions in separate threads
