@@ -57,7 +57,7 @@ def main():
         t.start()
     for t in threads:
         t.join()
-    @spark.stop()
+    spark.stop()
     # Stop the Spark session
     
     students_df = results["students"]
