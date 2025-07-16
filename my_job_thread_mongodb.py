@@ -50,8 +50,8 @@ def main():
           .option("database", "Trust") \
           .option("collection", "dept") \
           .load()
-        filtered_df = departments_df.filter(departments_df.Dept == 4)
-        filtered_df.show()  
+       filtered_df = departments_df.filter(departments_df.Dept == 4)
+       filtered_df.show()  
     # Run both processing functions in separate threads
     threads = [threading.Thread(target=fn) for fn in [process_data1, process_data2]]
     for t in threads:
