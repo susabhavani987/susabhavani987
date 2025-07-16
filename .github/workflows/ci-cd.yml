@@ -28,4 +28,4 @@ jobs:
           
       - name: Run PySpark job
         run: |
-           spark-submit --packages org.mongodb.spark:mongo-spark-connector_2.12:10.1.1 my_job_thread_mongodb_org.py
+           spark-submit --packages org.mongodb.spark:mongo-spark-connector_2.12:10.1.1 mongodb_load_csvfile
