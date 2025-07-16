@@ -30,7 +30,7 @@ def main():
     db = client['Trust']
     students = db['students']
     dept = db['dept']
-
+    results = {} 
     # Multithreaded processing functions
     def process_data1():
         students_df = spark.read.format("mongodb") \
@@ -57,7 +57,7 @@ def main():
         t.start()
     for t in threads:
         t.join()
-    spark.stop()
+    
     # Stop the Spark session
     
     students_df = results["students"]
@@ -69,5 +69,6 @@ def main():
     # Show result
     print("Connecting after Join in the joined", uri)
     joined_df.show()
+    spark.stop()
 if __name__ == "__main__":
     main()
