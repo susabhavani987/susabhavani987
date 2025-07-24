@@ -39,5 +39,4 @@ query = json_df.writeStream \
         .trigger(processingTime="10 seconds") \
         .start()
 
-
 query.awaitTermination(60)
