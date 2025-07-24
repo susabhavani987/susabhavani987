@@ -19,7 +19,7 @@ spark = SparkSession.builder \
         .config("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.12:10.1.1") \
         .config("spark.mongodb.write.connection.uri", uri) \
         .getOrCreate()
-
+print(f"this is spark")
 
 df_kafka = spark.readStream.format("kafka") \
           .option("kafka.bootstrap.servers", "d1uqmc63h0primvt047g.any.us-east-1.mpx.prd.cloud.redpanda.com:9092") \
@@ -28,15 +28,15 @@ df_kafka = spark.readStream.format("kafka") \
           .option("sasl_plain_username","Ghattamaneni") \
           .option("sasl_plain_password","Livingstone#") \
           .load()
-          
+print(f"this is kafka")          
 json_df = df_kafka.selectExpr("CAST(value AS STRING) as json") \
             .select(from_json(col("json"), schema).alias("data")) \
             .select("data.*")
-
+print(f"this is kafka")
 query = json_df.writeStream \
         .format("mongodb") \
         .option("checkpointLocation", "/tmp/kafka-mongo-checkpoint") \
         .trigger(processingTime="10 seconds") \
         .start()
 
-query.awaitTermination()
+query.awaitTermination(60)
