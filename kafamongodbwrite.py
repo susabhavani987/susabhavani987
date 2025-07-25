@@ -23,20 +23,27 @@ print(f"this is spark")
 
 df_kafka = spark.readStream.format("kafka") \
           .option("kafka.bootstrap.servers", "d1uqmc63h0primvt047g.any.us-east-1.mpx.prd.cloud.redpanda.com:9092") \
-          .option("subscribe", "demo-topic-2") \
+          .option("subscribe", "demo-topic") \
           .option("sasl_mechanism","SCRAM-SHA-256") \
           .option("sasl_plain_username","Ghattamaneni") \
           .option("sasl_plain_password","Livingstone#") \
           .load()
 print(f"this is kafka")  
-for message in df_kafka:
-   print(f"Topic: {message.topic} | Partition: {message.partition} | Offset: {message.offset}")
-   print(f"Key: {message.key}, Value: {message.value.decode('utf-8')}")
-        
+
+df_kafka.selectExpr(
+                    "CAST(key AS STRING)", 
+                    "CAST(value AS STRING)", 
+                    "topic", "partition", "offset"  
+                    ).writeStream \
+                    .format("console") \
+                    .option("truncate", False) \
+                    .start() \
+                    .awaitTermination(60)
+    
 json_df = df_kafka.selectExpr("CAST(value AS STRING) as json") \
             .select(from_json(col("json"), schema).alias("data")) \
             .select("data.*")
-print(f"this is kafka")
+print(f"this is kafka json_df")
 query = json_df.writeStream \
         .format("mongodb") \
         .option("checkpointLocation", "/tmp/kafka-mongo-checkpoint") \
