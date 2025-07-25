@@ -31,15 +31,22 @@ jobs:
     
       - name: Install Redpanda rpk CLI
         run: |
-            sudo apt-get update
-            sudo apt-get install -y gnupg ca-certificates curl
-            curl -fsSL 'https://packages.redpanda.com/public/redpanda/gpg.237f0cf8.key' -o redpanda.gpg || (echo "Failed to download key" && exit 1)
-            file redpanda.gpg
-            sudo gpg --dearmor -o /usr/share/keyrings/redpanda-keyring.gpg redpanda.gpg
-            echo "deb [signed-by=/usr/share/keyrings/redpanda-keyring.gpg] https://packages.redpanda.com/public/redpanda/deb/any any main" | sudo tee /etc/apt/sources.list.d/redpanda.list
-            sudo apt-get update
-            sudo apt-get install -y rpk
-            rpk version
+            # Step 1: Start Redpanda local cluster with Docker Compose
+             mkdir -p redpanda-quickstart && cd redpanda-quickstart
+             curl -sSL https://docs.redpanda.com/redpanda-quickstart.tar.gz | tar xzf -
+             cd docker-compose
+             docker compose up -d
+
+            # Step 2: Install rpk CLI from official GitHub binary release
+             cd ~
+             curl -L -o rpk.tgz https://github.com/redpanda-data/redpanda/releases/download/v24.1.10/rpk-linux-amd64.tar.gz
+             tar -xzf rpk.tgz
+             sudo mv rpk /usr/local/bin/
+             rm rpk.tgz
+
+             # Step 3: Verify rpk installation
+             rpk version
+
           
       - name: Run PySpark job
         run: |
