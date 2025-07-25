@@ -28,9 +28,15 @@ jobs:
           pip install -r requirements.txt
           pip install pymongo
           pip install kafka-python
-    
-    
+      - name: Install rpk 
+        run: | 
+          curl -LO https://github.com/redpanda-data/redpanda/releases/latest/download/rpk-linux-amd64.zip 
+          mkdir -p ~/.local/bin unzip rpk-linux-amd64.zip -d ~/.local/bin/ echo 'export PATH="$HOME/.local/bin:$PATH"' >> $GITHUB_ENV 
           
+       - name: Run rpk command 
+         run: | 
+          source $GITHUB_ENV rpk version # Example command to verify installation
+    
       - name: Run PySpark job
         run: |
            rpk topic list -b d1uqmc63h0primvt047g.any.us-east-1.mpx.prd.cloud.redpanda.com:9092 \
