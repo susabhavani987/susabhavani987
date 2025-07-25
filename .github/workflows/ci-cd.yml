@@ -28,7 +28,8 @@ jobs:
           pip install -r requirements.txt
           pip install pymongo
           pip install kafka-python
-          
+    
+    
       - name: Run PySpark job
         run: |
            curl -s https://packages.redpanda.com/cli/install.sh | bash
