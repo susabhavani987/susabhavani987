@@ -24,6 +24,7 @@ print(f"this is spark")
 df_kafka = spark.readStream.format("kafka") \
           .option("kafka.bootstrap.servers", "d1uqmc63h0primvt047g.any.us-east-1.mpx.prd.cloud.redpanda.com:9092") \
           .option("subscribe", "demo-topic") \
+          .option("security_protocol", "SASL_SSL") \
           .option("sasl_mechanism","SCRAM-SHA-256") \
           .option("sasl_plain_username","Ghattamaneni") \
           .option("sasl_plain_password","Livingstone#") \
