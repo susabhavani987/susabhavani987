@@ -8,7 +8,7 @@ from pyspark.sql import SparkSession
 spark = SparkSession.builder \
     .appName("KafkaDebug") \
     .master("local[2]") \
-    .config("spark.hadoop.fs.defaultFS", "/tmp/1.txt") \
+    .config("spark.hadoop.fs.defaultFS", "file:///") \
     .getOrCreate()
 
 spark.sparkContext.setLogLevel("DEBUG")
@@ -27,7 +27,7 @@ df = spark.readStream \
 
 df.selectExpr("CAST(value AS STRING)").writeStream \
     .format("console") \
-    .option("checkpointLocation", "/tmp/kafka_debug_checkpoint") \
+    .option("checkpointLocation", "file:///tmp/kafka_debug_checkpoint") \
     .start() \
     .awaitTermination()
 
