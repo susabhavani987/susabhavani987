@@ -28,7 +28,11 @@ df_kafka = spark.readStream.format("kafka") \
           .option("sasl_plain_username","Ghattamaneni") \
           .option("sasl_plain_password","Livingstone#") \
           .load()
-print(f"this is kafka")          
+print(f"this is kafka")  
+for message in df_kafka:
+   print(f"Topic: {message.topic} | Partition: {message.partition} | Offset: {message.offset}")
+   print(f"Key: {message.key}, Value: {message.value.decode('utf-8')}")
+        
 json_df = df_kafka.selectExpr("CAST(value AS STRING) as json") \
             .select(from_json(col("json"), schema).alias("data")) \
             .select("data.*")
