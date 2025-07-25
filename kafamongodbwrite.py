@@ -18,6 +18,7 @@ spark = SparkSession.builder \
         .master("local[2]") \
         .config("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.12:10.1.1") \
         .config("spark.mongodb.write.connection.uri", uri) \
+
         .getOrCreate()
 print(f"this is spark")
 
@@ -28,7 +29,18 @@ df_kafka = spark.readStream.format("kafka") \
           .option("sasl_plain_username","Ghattamaneni") \
           .option("sasl_plain_password","Livingstone#") \
           .load()
-print(f"this is kafka")  
+print(f"this is kafka") 
+df_kafka.printSchema()
+
+debug_query = df_kafka \
+    .selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)", "topic", "partition", "offset") \
+    .writeStream \
+    .outputMode("append") \
+    .format("console") \
+    .option("truncate", False) \
+    .start()
+
+debug_query.awaitTermination(30) 
 
 df_kafka.selectExpr(
                     "CAST(key AS STRING)", 
@@ -47,7 +59,9 @@ print(f"this is kafka json_df")
 query = json_df.writeStream \
         .format("mongodb") \
         .option("checkpointLocation", "/tmp/kafka-mongo-checkpoint") \
+        .option("database", "Trust") \
+        .option("collection", "students") \
         .trigger(processingTime="10 seconds") \
         .start()
 
-query.awaitTermination(60)
+query.awaitTermination(120)
