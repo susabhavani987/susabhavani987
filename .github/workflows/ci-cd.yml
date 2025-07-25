@@ -31,7 +31,7 @@ jobs:
     
       - name: Install Redpanda rpk CLI
         run: |
-          curl -L -o rpk.tgz https://github.com/redpanda-data/redpanda/releases/download/v23.1.10/rpk-linux-amd64.tar.gz
+          curl -L -o rpk.tgz https://github.com/redpanda-data/redpanda/releases/download/v24.1.10/rpk-linux-amd64.tar.gz
           tar -xzf rpk.tgz
           sudo mv rpk /usr/bin/rpk
           rpk version
