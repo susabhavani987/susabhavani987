@@ -28,8 +28,7 @@ df = spark.readStream \
 df.selectExpr("CAST(value AS STRING)").writeStream \
     .format("console") \
     .option("checkpointLocation", "/tmp/kafka_debug_checkpoint") \
-    .start()
-
+    .start() \
     .awaitTermination()
 
 
