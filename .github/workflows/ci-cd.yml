@@ -34,11 +34,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y gnupg ca-certificates curl
           curl -1sLf 'https://packages.redpanda.com/public/redpanda/gpg.237f0cf8.key' | sudo gpg --dearmor -o /usr/share/keyrings/redpanda-archive-keyring.gpg
-          echo "deb [signed-by=/usr/share/keyrings/redpanda-archive-keyring.gpg] https://packages.redpanda.com/public/redpanda/deb/ubuntu jammy main" | sudo tee /etc/apt/sources.list.d/redpanda.list
+          echo "deb [signed-by=/usr/share/keyrings/redpanda-archive-keyring.gpg] https://packages.redpanda.com/public/redpanda/deb/any/ any main" | sudo tee /etc/apt/sources.list.d/redpanda.list
           sudo apt-get update
           sudo apt-get install -y rpk
           which rpk
-          rpk version   
+          rpk version
           
       - name: Run PySpark job
         run: |
