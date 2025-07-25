@@ -29,24 +29,7 @@ jobs:
           pip install pymongo
           pip install kafka-python
     
-      - name: Install Redpanda rpk CLI
-        run: |
-            # Step 1: Start Redpanda local cluster with Docker Compose
-             mkdir -p redpanda-quickstart && cd redpanda-quickstart
-             curl -sSL https://docs.redpanda.com/redpanda-quickstart.tar.gz | tar xzf -
-             cd docker-compose
-             docker compose up -d
-
-            # Step 2: Install rpk CLI from official GitHub binary release
-             cd ~
-             curl -L -o rpk.tgz https://github.com/redpanda-data/redpanda/releases/download/v24.1.10/rpk-linux-amd64.tar.gz
-             tar -xzf rpk.tgz
-             sudo mv rpk /usr/local/bin/
-             rm rpk.tgz
-
-             # Step 3: Verify rpk installation
-             rpk version
-
+    
           
       - name: Run PySpark job
         run: |
