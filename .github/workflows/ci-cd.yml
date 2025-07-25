@@ -29,9 +29,12 @@ jobs:
           pip install pymongo
           pip install kafka-python
     
-    
+      - name: Install Redpanda rpk CLI
+        run: |
+          curl -s https://packages.redpanda.com/cli/install.sh | sudo bash
+          sudo ln -s /usr/local/bin/rpk /usr/bin/rpk    
+          
       - name: Run PySpark job
         run: |
-           curl -s https://packages.redpanda.com/cli/install.sh | bash
            rpk topic list -b d1uqmc63h0primvt047g.any.us-east-1.mpx.prd.cloud.redpanda.com:9092 \
               -u $REDPANDA_USER -p $REDPANDA_PASS --sasl-mechanism SCRAM-SHA-256
