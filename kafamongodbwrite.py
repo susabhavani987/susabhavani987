@@ -18,7 +18,6 @@ spark = SparkSession.builder \
         .master("local[2]") \
         .config("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.12:10.1.1") \
         .config("spark.mongodb.write.connection.uri", uri) \
-
         .getOrCreate()
 print(f"this is spark")
 
