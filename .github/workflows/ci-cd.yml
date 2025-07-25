@@ -32,7 +32,9 @@ jobs:
       - name: Install Redpanda rpk CLI
         run: |
           curl -s https://packages.redpanda.com/cli/install.sh | sudo bash
-          sudo ln -s /usr/local/bin/rpk /usr/bin/rpk    
+          sudo mv /usr/local/bin/rpk /usr/bin/rpk
+          which rpk
+          rpk version    
           
       - name: Run PySpark job
         run: |
