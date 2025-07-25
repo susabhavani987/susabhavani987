@@ -29,15 +29,15 @@ jobs:
           pip install pymongo
           pip install kafka-python
       - name: Install rpk 
-         run: | 
-            curl -LO https://github.com/redpanda-data/redpanda/releases/latest/download/rpk-linux-amd64.zip 
-            unzip  rpk-linux-amd64.zip 
-            sudo mv rpk /usr/local/bin/ 
+        run: | 
+           curl -LO https://github.com/redpanda-data/redpanda/releases/latest/download/rpk-linux-amd64.zip 
+           unzip  rpk-linux-amd64.zip 
+           sudo mv rpk /usr/local/bin/ 
       - name: Run rpk command 
-         run: | 
-            rpk version 
+        run: | 
+           rpk version 
        
       - name: Run PySpark job
-         run: |
+        run: |
            rpk topic list -b d1uqmc63h0primvt047g.any.us-east-1.mpx.prd.cloud.redpanda.com:9092 \
               -u $REDPANDA_USER -p $REDPANDA_PASS --sasl-mechanism SCRAM-SHA-256
