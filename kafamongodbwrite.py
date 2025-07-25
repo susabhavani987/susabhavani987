@@ -28,7 +28,7 @@ df_kafka = spark.readStream.format("kafka") \
           .option("sasl_mechanism","SCRAM-SHA-256") \
           .option("sasl_plain_username","Ghattamaneni") \
           .option("sasl_plain_password","Livingstone#") \
-          .option("kafka.sasl.jaas.config","org.apache.kafka.common.security.scram.ScramLoginModule required username='Ghattamaneni' password='Livingstone#';")
+          .option("kafka.sasl.jaas.config","org.apache.kafka.common.security.scram.ScramLoginModule required username='Ghattamaneni' password='Livingstone#';") \
           .load()
 print(f"this is kafka second") 
 df_kafka.printSchema()
