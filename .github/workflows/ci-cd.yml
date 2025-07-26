@@ -40,5 +40,5 @@ jobs:
       - name: Run PySpark job
         run: |
            rpk topic list --brokers  d1uqmc63h0primvt047g.any.us-east-1.mpx.prd.cloud.redpanda.com:9092 \
-              --user "$REDPANDA_USER" --password "$REDPANDA_PASS" --sasl-mechanism SCRAM-SHA-256 --detailed -v  --security.protocol=SASL_SSL 
+              --user "$REDPANDA_USER" --password "$REDPANDA_PASS" --sasl-mechanism SCRAM-SHA-256 --detailed -v  --security-protocol=SASL_SSL 
               
